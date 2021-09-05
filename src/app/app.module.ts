@@ -18,6 +18,7 @@ import { PhotoFrameComponent } from './shared/components/photo-frame/photo-frame
     LikeWidgetModule,
     PhotoFrameModule
   ],
+  exports:[PhotoFrameComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
