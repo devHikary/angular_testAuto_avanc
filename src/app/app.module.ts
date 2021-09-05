@@ -10,7 +10,6 @@ import { PhotoFrameComponent } from './shared/components/photo-frame/photo-frame
 @NgModule({
   declarations: [
     AppComponent,
-    PhotoFrameComponent
   ],
   imports: [
     BrowserModule,
@@ -18,7 +17,6 @@ import { PhotoFrameComponent } from './shared/components/photo-frame/photo-frame
     LikeWidgetModule,
     PhotoFrameModule
   ],
-  exports:[PhotoFrameComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
