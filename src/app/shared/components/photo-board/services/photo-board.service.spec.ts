@@ -32,6 +32,10 @@ describe(PhotoBoardService.name, () => {
     httpController = TestBed.inject(HttpTestingController);
   });
 
+  afterEach(() => {
+    httpController.verify();
+  })
+
   it(`#${PhotoBoardService.prototype.getPhotos.name}`, done => {
     service.getPhotos().subscribe(photos => {
       expect(photos[0].description).toBe('EXAMPLE 1');
