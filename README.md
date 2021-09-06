@@ -4,12 +4,14 @@ Curso da plataforma Alura
 
 Instrutor: **Flavio Henrique de Souza Almeida**
 
-## Como rodar
+Continuação do curso de fundamentos, serão apresentados novos recursos, como teste de diretiva, como trabalhar e testar Node Changes, trabalhar com HTTP Client teste em model, mock providers etc.
+
+## 🛠️ Abrir e rodar o projeto
 - Clone o projeto
 - Rode o comando `npm run all` para rodar o servidor e a aplicação
 - Rode o comando `npm run test` para rodar os testes
 
-## Anotações
+## ✔️ Técnicas e tecnologias utilizadas
 ### Aula 1
 
 - Criar o componente `photo-frame`
