@@ -2,7 +2,7 @@ import { Photo } from './interfaces/photo';
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { DebugElement, SimpleChange, SimpleChanges } from '@angular/core';
 
 import { PhotoBoardComponent } from './photo-board.component';
 
@@ -40,6 +40,11 @@ describe(PhotoBoardComponent.name, () => {
   it(`Should display rows and columns when (@Input photos) has value`, () => {
     component.photos = buildPhotoList();
     fixture.detectChanges();
+    const change: SimpleChanges = {
+      // Tem sempre o nome da input property que mudou
+      photos: new SimpleChange([], component.photos, true)
+    };
+    component.ngOnChanges(change);
     expect(component.rows.length)
       .withContext('Number of rows')
       .toBe(2);
