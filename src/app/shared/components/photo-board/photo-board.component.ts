@@ -1,4 +1,5 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+
 import { Photo } from './interfaces/photo';
 
 @Component({
@@ -26,4 +27,3 @@ export class PhotoBoardComponent implements OnChanges {
     return newRows;
   }
 }
-
