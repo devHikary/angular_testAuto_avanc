@@ -1,3 +1,11 @@
-<p>
-  photo-board works!
-</p>
+<ol>
+  <li *ngFor="let cols of rows">
+    <div class="cols" *ngFor="let photo of cols">
+      <app-photo-frame
+        [src]="photo.url"
+        [description]="photo.descripton"
+      >
+      </app-photo-frame>
+    </div>
+  </li>
+</ol>
