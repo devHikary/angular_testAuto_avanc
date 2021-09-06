@@ -1,23 +1,9 @@
-import { Photo } from './interfaces/photo';
-/* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement, SimpleChange, SimpleChanges } from '@angular/core';
 
 import { PhotoBoardComponent } from './photo-board.component';
-
-function buildPhotoList(): Photo[] {
-  const photos: Photo[] = [];
-  for (let i = 0; i < 8; i++) {
-    photos.push({
-      id: i + 1,
-      url: '',
-      description: ''
-    });
-  }
-  return photos;
-}
-
+import { buildPhotoList } from './test/build-photo-list';
 
 describe(PhotoBoardComponent.name, () => {
   let component: PhotoBoardComponent;
