@@ -121,3 +121,51 @@ import { By } from '@angular/platform-browser';
 
 const divEl = fixture.debugElement.query(By.directive(ActionDirective)).nativeElement;
 ```
+### Aula 4
+
+- `ngOnChanges()` → O método é chamado imediatamente quando é detectado uma alteração nas propriedades vinculadas ao dado
+
+[Angular](https://angular.io/api/core/OnChanges)
+
+```tsx
+@Component({selector: 'my-cmp', template: `...`})
+class MyComponent implements OnChanges {
+  @Input() prop: number = 0;
+
+  ngOnChanges(changes: SimpleChanges) {
+    // changes.prop contains the old and the new value...
+  }
+}
+```
+
+- única maneira do ngOnChanges funcionar e ser chamado é se a propriedade do seu componente está sendo referenciada através de um template.
+
+```tsx
+fixture.detectChanges();
+    const change: SimpleChanges = {
+      // Tem sempre o nome da input property que mudou
+      photos: new SimpleChange([], component.photos, true)
+    };
+    component.ngOnChanges(change);
+```
+
+### Aula 5
+
+- É através de TestBed.inject que injetamos um serviço em nosso teste.
+- A função `spyOn` recebe como primeiro parâmetro um objeto e como segundo uma **string** que contém exatamente o nome do método que queremos espionar. Em seguida, encadeando uma chamada há `.and.returnValue,` podemos passar para **returnValue** o valor que o método retornará quando for chamado.
+- `.and.returnValue(of(photos))` → O `spyOn` vai escutar o `getPhotos`, toda vez que esse método for chamado dentro desse meu it, ele vai no lugar de executar o comportamento original, que é ir no **backend**, ele vai me retornar um **observable** com uma lista de fotos, porque isso é parte da API do meu serviço.
+
+```tsx
+it(`(D) Should display board when data arrives`, () => {
+    fixture.detectChanges();
+    const photos = buildPhotoList();
+    spyOn(service, 'getPhotos')
+      .and.returnValue(of(photos));
+  });
+```
+
+- Quando utilizado no lugar do `HttpClientModule`, irá fornecer uma instância especial de **HttpClient** que pode ser controlada em nossos testes.
+- Assim como qualquer serviço, pode ser injetado através de `TestBed.inject,` porém é necessário que o módulo `HttpClientTestingModule` tenha sido importado pelo módulo do teste.
+- Quando é aplicado lógicas de transformação diretamente nas chamadas de instâncias de HttpClient. Esse é um dos motivos que levam o desenvolvedor a utilizar o HttpClientTestingController do módulo HttpClientTestingModule para criar respostas falsas para determinadas APIs. Ele pode fornecer dados previsíveis tornando possível o teste dessas transformações.
+- `httpController.verify()`, verifica se tem alguma requisição feita, que no seu teste executou, que não tenha uma resposta, que você não tenha um match no expectOne. Isso é importante porque você é obrigado a dar uma resposta para todas elas.
+- **Mock provider with useClass** → utilizado quando queremos sobrescrever apenas apenas um método e poder reutilizá-lo.

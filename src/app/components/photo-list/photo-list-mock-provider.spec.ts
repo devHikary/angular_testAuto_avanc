@@ -1,3 +1,4 @@
+import { PhotoBoardMockService } from './../../shared/components/photo-board/services/photo-board.-mock.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Observable, of } from 'rxjs';
@@ -20,12 +21,9 @@ describe(PhotoListComponent.name + ' Mock Provider', () => {
       providers: [
         {
           provide: PhotoBoardService,
-          useValue: {
-            getPhotos(): Observable<Photo[]> {
-              return of(buildPhotoList());
-            }
+          useClass: PhotoBoardMockService,
         }
-      }]
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(PhotoListComponent);
